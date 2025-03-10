@@ -31,7 +31,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
-        <div className="className='flex-1 flex justify-start items-center gap-3 cursor-pointer"
+        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
         onClick={handleProfileClick}
         >
           <Image
@@ -64,7 +64,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
       </div>
 
       <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p classname="font-inter text-sm blue_gradient cursor-pointer"
+      <p className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
         #{post.tag}
@@ -80,7 +80,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
           </p>
           <p
             className='font-inter text-sm orange_gradient cursor-pointer'
-            onClick={handleDelete}
+            onClick={()=>{ handleDelete(post)}}
           >
             Delete
           </p>
