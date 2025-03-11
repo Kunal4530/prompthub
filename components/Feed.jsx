@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
+
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -17,27 +18,24 @@ const PromptCardList = ({ data, handleTagClick }) => {
   );
 };
 
-
 const Feed = () => {
-
-  const [searchText, setSearchText] = useState("");
   const [allPosts, setAllPosts] = useState([]);
 
+  // Search states
+  const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
-
   const fetchPosts = async () => {
-    const response = await fetch('/api/prompt');
+    const response = await fetch("/api/prompt");
     const data = await response.json();
 
     setAllPosts(data);
-  }
+  };
 
   useEffect(() => {
     fetchPosts();
-
-  }, [])
+  }, []);
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
@@ -70,7 +68,7 @@ const Feed = () => {
   };
 
   return (
-    <section className="feed">
+    <section className='feed'>
       <form className='relative w-full flex-center'>
         <input
           type='text'
@@ -82,6 +80,7 @@ const Feed = () => {
         />
       </form>
 
+      {/* All Prompts */}
       {searchText ? (
         <PromptCardList
           data={searchedResults}
@@ -91,7 +90,7 @@ const Feed = () => {
         <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
       )}
     </section>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;
