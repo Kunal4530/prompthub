@@ -19,7 +19,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 const Feed = () => {
-  const [allPosts, setAllPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   // Search states
   const [searchText, setSearchText] = useState("");
@@ -30,10 +30,16 @@ const Feed = () => {
     const response = await fetch("/api/prompt");
     const data = await response.json();
 
-    setAllPosts(data);
+    setPosts(data);
   };
 
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/prompt');
+      const data = await response.json();
+
+      setPosts(data);
+    }
     fetchPosts();
   }, []);
 
@@ -87,7 +93,7 @@ const Feed = () => {
           handleTagClick={handleTagClick}
         />
       ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        <PromptCardList data={posts} handleTagClick={handleTagClick} />
       )}
     </section>
   );
